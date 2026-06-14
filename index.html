@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Geoffrey Douaud — Rénove Habitat</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-inner">
+      <div class="preloader-logo">
+        <span class="preloader-gd">GD</span>
+        <span class="preloader-rh">Rénove Habitat</span>
+      </div>
+      <div class="preloader-bar">
+        <div class="preloader-fill" id="preloaderFill"></div>
+      </div>
+      <span class="preloader-pct" id="preloaderPct">0%</span>
+    </div>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">
+        <div class="logo-badge">GD</div>
+        <div class="logo-words">
+          <span class="lw-top">Geoffrey Douaud</span>
+          <span class="lw-bot">Rénove Habitat</span>
+        </div>
+      </a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#services" class="nm-link">Services</a></li>
+        <li><a href="#about" class="nm-link">À Propos</a></li>
+        <li><a href="#contact" class="nm-link nm-cta">Devis Gratuit <i class="fas fa-arrow-right"></i></a></li>
+      </ul>
+      <button class="nav-burger" id="navBurger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU OVERLAY -->
+  <div class="mobile-overlay" id="mobileOverlay">
+    <ul class="mobile-menu">
+      <li><a href="#services" class="mob-link">Services</a></li>
+      <li><a href="#about" class="mob-link">À Propos</a></li>
+      <li><a href="#contact" class="mob-link">Contact</a></li>
+    </ul>
+    <div class="mobile-contact">
+      <p>+33 6 50 76 08 44</p>
+      <p>dgof@hotmail.fr</p>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas class="hero-canvas" id="heroCanvas"></canvas>
+    <div class="hero-grid-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-tag reveal-up" style="--d:0.1s">
+        <span class="tag-dot"></span>
+        Artisan certifié · Loire-Atlantique | 44
+      </div>
+
+      <h1 class="hero-title">
+        <span class="ht-line reveal-up" style="--d:0.25s">Votre</span>
+        <span class="ht-line ht-big reveal-up" style="--d:0.4s">Toiture<em>.</em></span>
+        <span class="ht-line ht-outline reveal-up" style="--d:0.55s">Réinventée.</span>
+      </h1>
+
+      <p class="hero-sub reveal-up" style="--d:0.7s">
+        Démoussage · Nettoyage · Traitement · Peinture intérieur & extérieur · Rénovation complète · Hydrofuge coloré.<br />
+        Chaque projet traité avec l'exigence d'un artisan professionnel.
+      </p>
+
+      <div class="hero-actions reveal-up" style="--d:0.85s">
+        <a href="#contact" class="btn-orange">
+          <span>Demander un devis</span>
+          <div class="btn-shine"></div>
+        </a>
+        <a href="#services" class="btn-ghost">
+          Voir les services
+          <i class="fas fa-chevron-down"></i>
+        </a>
+      </div>
+
+      <div class="hero-stats reveal-up" style="--d:1s">
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <span class="hstat-num" data-target="50">0</span>
+          <span class="hstat-unit">+</span>
+          <span class="hstat-label">chantiers réalisés</span>
+        </div>
+        <div class="hstat-divider"></div>
+        <div class="hstat">
+          <span class="hstat-num" data-target="100">0</span>
+          <span class="hstat-unit">%</span>
+          <span class="hstat-label">des clients satisfaits</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+
+    <div class="hero-deco-text">TOITURE</div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="section-label reveal-up">LES PRESTATIONS</div>
+    <div class="container">
+      <div class="section-head reveal-up">
+        <h2 class="sh-title">Ce qu'on <em>fait</em><br />pour vous.</h2>
+        <p class="sh-sub">Des interventions précises, du matériel professionnel,<br />et un résultat qui tient dans le temps.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="svc-card reveal-card" style="--ci:0">
+          <div class="svc-num">01</div>
+          <div class="svc-icon"><i class="fas fa-leaf"></i></div>
+          <h3 class="svc-title">Démoussage</h3>
+          <p class="svc-desc">Élimination en profondeur des mousses, lichens et algues. Traitement biocide longue durée pour une toiture saine et protégée.</p>
+          <div class="svc-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+          <div class="svc-glow"></div>
+        </div>
+
+        <div class="svc-card reveal-card" style="--ci:1">
+          <div class="svc-num">02</div>
+          <div class="svc-icon"><i class="fas fa-droplet"></i></div>
+          <h3 class="svc-title">Nettoyage de Toiture</h3>
+          <p class="svc-desc">Nettoyage haute pression ou à basse pression selon les matériaux. Résultat impeccable sans endommager vos tuiles ni ardoises.</p>
+          <div class="svc-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+          <div class="svc-glow"></div>
+        </div>
+
+        <div class="svc-card reveal-card" style="--ci:2">
+          <div class="svc-num">03</div>
+          <div class="svc-icon"><i class="fas fa-shield-halved"></i></div>
+          <h3 class="svc-title">Traitement de Toiture</h3>
+          <p class="svc-desc">Application hydrofuge, imperméabilisant et anti-mousse. Protection longue durée contre l'humidité, les intempéries et la végétation.</p>
+          <div class="svc-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+          <div class="svc-glow"></div>
+        </div>
+
+        <div class="svc-card reveal-card" style="--ci:3">
+          <div class="svc-num">04</div>
+          <div class="svc-icon"><i class="fas fa-paint-roller"></i></div>
+          <h3 class="svc-title">Peinture</h3>
+          <p class="svc-desc">Peinture intérieure et extérieure : murs, plafonds, façades, volets. Finitions soignées avec des produits professionnels haut de gamme.</p>
+          <div class="svc-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+          <div class="svc-glow"></div>
+        </div>
+
+        <div class="svc-card reveal-card" style="--ci:4">
+          <div class="svc-num">05</div>
+          <div class="svc-icon"><i class="fas fa-house-chimney"></i></div>
+          <h3 class="svc-title">Rénovation de Toiture</h3>
+          <p class="svc-desc">Remplacement de tuiles, réfection de faîtages, zinguerie et étanchéité. Prise en charge complète ou partielle de votre toiture.</p>
+          <div class="svc-arrow"><i class="fas fa-arrow-up-right-from-square"></i></div>
+          <div class="svc-glow"></div>
+        </div>
+
+        <div class="svc-card svc-card--cta reveal-card" style="--ci:5">
+          <div class="svc-cta-content">
+            <span class="svc-cta-tag">Projet sur mesure ?</span>
+            <h3 class="svc-cta-title">Autre<br />prestation</h3>
+            <p class="svc-cta-sub">Vous avez un besoin spécifique ? On étudie votre projet ensemble, gratuitement et sans engagement.</p>
+            <a href="#contact" class="svc-cta-btn">
+              Nous contacter <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+          <div class="svc-cta-bg-text">06</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-bg-strip"></div>
+    <div class="container about-grid">
+
+      <div class="about-visual reveal-left">
+        <div class="av-frame">
+          <div class="av-photo-placeholder">
+            <i class="fas fa-hard-hat"></i>
+          </div>
+          <div class="av-badge">
+            <i class="fas fa-certificate"></i>
+            Protection<br />Garantie
+          </div>
+        </div>
+        <div class="av-quote">
+          <i class="fas fa-quote-left"></i>
+          Une demande particulière? N'hésitez plus, contactez moi.
+          <span>— Geoffrey Douaud</span>
+        </div>
+      </div>
+
+      <div class="about-text reveal-right">
+        <div class="section-label sl-left">À PROPOS</div>
+        <h2 class="at-title">L'artisan derrière<br /><em>chaque service.</em></h2>
+        <p class="at-body">
+          Geoffrey Douaud Rénove Habitat, une entreprise fondée sur une valeur simple : le travail bien fait. Intervention chez les particuliers et les professionnels avec le même niveau d'exigence, que ce soit pour un petit nettoyage de toiture ou une rénovation complète.
+        </p>
+        <p class="at-body">
+          Basés en Loire-Atlantique, déplacement au alentour de Crossac majoritairement et sur toute la région en fonction des services pour vous proposer un devis gratuit, transparent, et surtout adapté à votre budget !
+        </p>
+
+        <div class="about-features">
+          <div class="af-item">
+            <div class="af-icon"><i class="fas fa-circle-check"></i></div>
+            <div>
+              <span class="af-title">Qualité garantie</span>
+              <span class="af-sub">Matériaux pro, finitions impeccables</span>
+            </div>
+          </div>
+          <div class="af-item">
+            <div class="af-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <span class="af-title">Délais respectés</span>
+              <span class="af-sub">Engagement, et tient parole</span>
+            </div>
+          </div>
+          <div class="af-item">
+            <div class="af-icon"><i class="fas fa-file-invoice"></i></div>
+            <div>
+              <span class="af-title">Devis 100% gratuit</span>
+              <span class="af-sub">Sans engagement, réponse rapide</span>
+            </div>
+          </div>
+          <div class="af-item">
+            <div class="af-icon"><i class="fas fa-shield-halved"></i></div>
+            <div>
+              <span class="af-title">Protection</span>
+              <span class="af-sub">Vos travaux sont protégés 10 ans</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container contact-grid">
+
+      <div class="contact-left reveal-left">
+        <div class="section-label sl-left">CONTACT</div>
+        <h2 class="cl-title">Parlons de<br /><em>votre projet.</em></h2>
+        <p class="cl-sub">Devis gratuit · Réponse sous 24h · Sans engagement</p>
+
+        <div class="cl-infos">
+          <a href="tel:+33600000000" class="cli-item">
+            <div class="cli-icon"><i class="fas fa-phone"></i></div>
+            <div>
+              <span class="cli-label">Téléphone</span>
+              <span class="cli-val">+33 6 50 76 08 44</span>
+            </div>
+          </a>
+          <a href="mailto:contact@geoffrey-renove.fr" class="cli-item">
+            <div class="cli-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <span class="cli-label">Email</span>
+              <span class="cli-val">dgof@hotmail.fr</span>
+            </div>
+          </a>
+          <div class="cli-item">
+            <div class="cli-icon"><i class="fas fa-location-dot"></i></div>
+            <div>
+              <span class="cli-label">Zone d'intervention</span>
+              <span class="cli-val">Loire-Atlantique · 44</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="cl-decoration">
+          <div class="cld-line"></div>
+          <span>Disponible toute la semaine · 8h - 20h</span>
+        </div>
+      </div>
+
+      <div class="contact-right reveal-right">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="cf-row">
+            <div class="cf-field">
+              <input type="text" id="cfName" placeholder=" " required />
+              <label for="cfName">Votre nom</label>
+              <div class="cf-line"></div>
+            </div>
+            <div class="cf-field">
+              <input type="email" id="cfEmail" placeholder=" " required />
+              <label for="cfEmail">Votre email</label>
+              <div class="cf-line"></div>
+            </div>
+          </div>
+          <div class="cf-field">
+            <input type="tel" id="cfPhone" placeholder=" " />
+            <label for="cfPhone">Téléphone (optionnel)</label>
+            <div class="cf-line"></div>
+          </div>
+          <div class="cf-field cf-select-wrap">
+            <select id="cfService" required>
+              <option value="" disabled selected></option>
+              <option>Démoussage</option>
+              <option>Nettoyage de toiture</option>
+              <option>Traitement de toiture</option>
+              <option>Peinture</option>
+              <option>Rénovation de toiture</option>
+              <option>Autre prestation</option>
+            </select>
+            <label for="cfService">Type de prestation</label>
+            <div class="cf-line"></div>
+            <i class="fas fa-chevron-down cf-arrow"></i>
+          </div>
+          <div class="cf-field">
+            <textarea id="cfMsg" rows="4" placeholder=" " required></textarea>
+            <label for="cfMsg">Décrivez votre projet</label>
+            <div class="cf-line"></div>
+          </div>
+          <button type="submit" class="cf-submit" id="cfSubmit">
+            <span class="cfs-text">Envoyer ma demande</span>
+            <span class="cfs-icon"><i class="fas fa-paper-plane"></i></span>
+            <div class="cfs-shine"></div>
+          </button>
+          <div class="cf-success" id="cfSuccess">
+            <i class="fas fa-circle-check"></i>
+            Votre message a bien été envoyé ! Vous serez rappelé sous 24h !
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="fi-brand">
+        <div class="logo-badge">GD</div>
+        <div class="logo-words">
+          <span class="lw-top">Geoffrey Douaud</span>
+          <span class="lw-bot">Rénove Habitat</span>
+        </div>
+      </div>
+      <p class="fi-copy">© 2026 Geoffrey Douaud Rénove Habitat — Tous droits réservés</p>
+      <div class="fi-links">
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
