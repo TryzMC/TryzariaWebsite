@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Merci — Tryzaria Survival</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="petals" aria-hidden="true"></div>
+
+<section class="page-hero" style="min-height:70vh;display:flex;align-items:center">
+  <div class="wrap" style="text-align:center">
+    <div style="font-size:3rem">🎉</div>
+    <h1 class="h-section" id="m-title" style="margin-top:10px">Merci pour ton achat !</h1>
+    <p class="lead center" id="m-msg" style="margin-top:12px;max-width:48ch;margin-inline:auto"></p>
+    <div style="margin-top:24px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <a class="btn btn-gold" href="boutique.html" id="m-shop">Retour à la boutique</a>
+      <a class="btn btn-ghost" href="index.html" id="m-home">Accueil</a>
+    </div>
+  </div>
+</section>
+
+<script>
+(function () {
+  var TX = {
+    fr: {
+      title: "Merci pour ton achat !",
+      msg: "Ton paiement est confirmé. Ta récompense sera livrée en jeu sous quelques instants — connecte-toi (ou reconnecte-toi) pour la recevoir automatiquement.",
+      shop: "Retour à la boutique", home: "Accueil",
+    },
+    en: {
+      title: "Thank you for your purchase!",
+      msg: "Your payment is confirmed. Your reward will be delivered in-game shortly — log in (or reconnect) to receive it automatically.",
+      shop: "Back to shop", home: "Home",
+    },
+  };
+  function lang() { try { return localStorage.getItem("tryz_lang") === "en" ? "en" : "fr"; } catch (e) { return "fr"; } }
+  function apply() {
+    var x = TX[lang()];
+    document.documentElement.lang = lang();
+    document.getElementById("m-title").textContent = x.title;
+    document.getElementById("m-msg").textContent = x.msg;
+    document.getElementById("m-shop").textContent = x.shop;
+    document.getElementById("m-home").textContent = x.home;
+  }
+  apply();
+})();
+</script>
+</body>
+</html>
