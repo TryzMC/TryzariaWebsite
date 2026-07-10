@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-i18n="title_shop">Boutique — Tryzaria Survival</title>
+<meta name="description" content="Boutique Tryzaria Survival : grades, packs et récompenses, livrés automatiquement en jeu." />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+  /* ===== Boutique — panneau pseudo/coupon ===== */
+  .shop-panel{max-width:600px;margin:0 auto 38px;display:grid;gap:16px;
+    background:var(--glass);border:1px solid var(--glass-brd);
+    border-radius:var(--radius);padding:22px;backdrop-filter:blur(8px)}
+  .shop-field{display:grid;gap:6px}
+  .shop-field label{font-weight:700;font-size:.95rem;color:var(--cream)}
+  .shop-field input{padding:12px 14px;border-radius:12px;border:1px solid var(--glass-brd);
+    background:rgba(0,0,0,.28);color:#fff;font:inherit;font-size:1rem;transition:border-color .15s,box-shadow .15s}
+  .shop-field input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(246,201,74,.18)}
+  .shop-field input.is-error{border-color:var(--ember);box-shadow:0 0 0 3px rgba(255,107,61,.22)}
+  .shop-coupon-row{display:flex;gap:8px}
+  .shop-coupon-row input{flex:1}
+  .shop-coupon-msg{font-size:.9rem;font-weight:700;min-height:1.2em}
+
+  /* ===== Grille catalogue ===== */
+  .shop-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fill,minmax(232px,1fr))}
+
+  /* ===== Carte produit ===== */
+  .scard{--accent:var(--gold);position:relative;display:flex;flex-direction:column;align-items:center;
+    text-align:center;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(0,0,0,.10));
+    border:1px solid var(--glass-brd);border-radius:var(--radius);padding:26px 20px 22px;cursor:pointer;
+    transition:transform .18s var(--ease),box-shadow .18s var(--ease),border-color .18s}
+  .scard::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;border-radius:var(--radius) var(--radius) 0 0;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.9}
+  .scard:hover{transform:translateY(-6px);box-shadow:0 22px 50px -20px rgba(0,0,0,.7);border-color:var(--accent)}
+  .scard__badge{position:absolute;top:12px;right:12px;font-size:.7rem;font-weight:800;letter-spacing:.04em;
+    text-transform:uppercase;padding:5px 10px;border-radius:999px;color:#1a0f2e;
+    background:linear-gradient(90deg,var(--gold),var(--sunset));box-shadow:0 6px 16px -6px rgba(246,201,74,.7)}
+  .scard__icon{width:88px;height:88px;object-fit:contain;image-rendering:auto;
+    filter:drop-shadow(0 8px 18px rgba(0,0,0,.5));margin-bottom:6px}
+  /* Emblème de grade (texte stylisé, DA Tryzaria) */
+  .rank-emblem{display:flex;flex-direction:column;align-items:center;gap:5px;margin-bottom:8px;padding:8px 4px}
+  .rank-emblem__crown{font-size:1.6rem;line-height:1;color:var(--accent);filter:drop-shadow(0 0 9px var(--accent))}
+  .rank-emblem__word{font-family:"Press Start 2P",monospace;font-size:1rem;letter-spacing:1px;
+    background:linear-gradient(180deg,#fff 0%,var(--accent) 95%);-webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 2px 5px rgba(0,0,0,.55))}
+  .rank-emblem__pips{font-size:.85rem;letter-spacing:3px;color:var(--accent);text-shadow:0 0 8px rgba(0,0,0,.45)}
+  #modal-card .rank-emblem__crown{font-size:2.1rem}
+  #modal-card .rank-emblem__word{font-size:1.5rem}
+  #modal-card .rank-emblem__pips{font-size:1.05rem}
+
+  /* Visuel "hero" du pack d'ouverture : ♛ MASTER ♛ + cluster collé (caisse + clé + coin/money) */
+  .pack-hero{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 8px 4px}
+  .pack-hero::before{content:"";position:absolute;inset:-12% -8% 8%;z-index:-1;
+    background:radial-gradient(circle at 50% 40%,rgba(246,201,74,.40),transparent 64%)}
+  .pack-hero__title{font-family:"Press Start 2P",monospace;font-size:1.05rem;letter-spacing:1px;
+    background:linear-gradient(180deg,#fff 0%,#f6c94a 62%,#c8941e 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+    filter:drop-shadow(0 2px 6px rgba(0,0,0,.55))}
+  #modal-card .pack-hero__title{font-size:1.4rem}
+
+  /* Cluster de caisses (packs de clés) */
+  .scard__icons{display:flex;justify-content:center;align-items:flex-end;margin-bottom:6px;height:92px}
+  .scard__icons img{width:60px;height:60px;object-fit:contain;margin:0 -12px;
+    filter:drop-shadow(0 6px 14px rgba(0,0,0,.55));transition:transform .18s var(--ease)}
+  .scard__icons img:nth-child(odd){transform:translateY(-6px) rotate(-6deg)}
+  .scard__icons img:nth-child(even){transform:translateY(2px) rotate(6deg)}
+  .scard:hover .scard__icons img{transform:translateY(-4px) rotate(0)}
+  .scard--featured .scard__icons{height:auto}
+  .scard__name{font-family:"Fredoka";font-weight:600;font-size:1.4rem;color:var(--cream)}
+  .scard__price{font-family:"Press Start 2P",monospace;font-size:1.05rem;color:var(--accent);margin:8px 0 4px;
+    display:flex;gap:8px;align-items:baseline;justify-content:center;flex-wrap:wrap}
+  .scard__price s{opacity:.45;font-size:.7em;color:var(--muted)}
+  .scard__desc{color:var(--muted);font-size:.92rem;margin:8px 0 6px;min-height:2.4em}
+  .scard__features{width:100%;margin:6px 0 4px;text-align:left}
+  .scard__features li{padding:5px 0;color:var(--cream);font-size:.9rem;display:flex;gap:8px;align-items:flex-start}
+  .scard__features li::before{content:"◆";color:var(--accent);font-size:.65rem;margin-top:5px}
+  .scard__buy{display:flex;gap:9px;margin-top:auto;padding-top:16px;width:100%}
+  .sbtn{flex:1;cursor:pointer;border:none;border-radius:12px;padding:11px 12px;font-family:"Nunito";
+    font-weight:800;font-size:.92rem;transition:transform .12s,box-shadow .15s,background .15s}
+  .sbtn:hover{transform:translateY(-2px)}
+  .sbtn:active{transform:translateY(0)}
+  .sbtn--card{background:linear-gradient(90deg,var(--gold),var(--sunset));color:#1a0f2e}
+  .sbtn--card:hover{box-shadow:0 14px 30px -12px rgba(246,201,74,.7)}
+  .sbtn--paypal{background:#ffc439;color:#142c8e}
+  .sbtn--paypal:hover{box-shadow:0 14px 30px -12px rgba(255,196,57,.7)}
+
+  /* ===== Carte mise en avant (pack) ===== */
+  .scard--featured{grid-column:1/-1;flex-direction:row;flex-wrap:wrap;text-align:left;align-items:center;
+    gap:22px;padding:26px 28px;border-color:var(--gold);
+    background:linear-gradient(120deg,rgba(246,201,74,.12),rgba(255,126,182,.08));
+    box-shadow:var(--shadow-gold)}
+  .scard--featured::before{height:5px}
+  .scard--featured .scard__icon{width:110px;height:110px;margin:0}
+  .scard--featured__body{flex:1 1 260px;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
+  .scard--featured .scard__price{margin:6px 0;justify-content:flex-start}
+  .scard--featured .scard__desc{min-height:0}
+  .scard--featured .scard__buy{flex:0 0 auto;width:auto;flex-direction:column;padding-top:0;min-width:180px}
+  .scard--featured .sbtn{flex:none}
+
+  /* ===== Chargement ===== */
+  .shop-loading{grid-column:1/-1;text-align:center;color:var(--muted);padding:30px 0}
+  .spinner{width:34px;height:34px;border:3px solid rgba(255,255,255,.18);border-top-color:var(--gold);
+    border-radius:50%;margin:0 auto 12px;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  .shop-note{display:block;text-align:center;color:var(--muted);font-size:.88rem;margin-top:10px}
+
+  /* ===== Responsive ===== */
+  @media (max-width:640px){
+    .shop-grid{grid-template-columns:1fr;gap:16px}
+    .scard--featured{flex-direction:column;text-align:center;align-items:center}
+    .scard--featured__body{align-items:center;text-align:center}
+    .scard--featured .scard__price{justify-content:center}
+    .scard--featured .scard__buy{width:100%}
+    .shop-panel{padding:18px}
+  }
+
+  /* ===== Modal d'offre ===== */
+  .modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px}
+  .modal[hidden]{display:none}
+  .modal__overlay{position:absolute;inset:0;background:rgba(10,4,24,.62);
+    backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);animation:mfade .2s ease both}
+  .modal__card{--accent:var(--gold);position:relative;z-index:1;max-width:560px;width:100%;max-height:90vh;
+    overflow:auto;text-align:center;border-radius:var(--radius-lg);padding:38px 32px 32px;
+    background:linear-gradient(180deg,rgba(44,24,80,.97),rgba(22,11,39,.99));
+    border:1px solid var(--accent);box-shadow:0 30px 90px -22px rgba(0,0,0,.85),0 0 60px -28px var(--accent);
+    animation:mpop .28s var(--ease) both}
+  @keyframes mfade{from{opacity:0}}
+  @keyframes mpop{0%{transform:scale(.92) translateY(10px);opacity:0}100%{transform:none;opacity:1}}
+  .modal__close{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:none;
+    background:rgba(255,255,255,.1);color:var(--cream);font-size:1.05rem;cursor:pointer;transition:background .15s}
+  .modal__close:hover{background:rgba(255,255,255,.22)}
+  .modal__badge{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+    padding:5px 12px;border-radius:999px;color:#1a0f2e;margin-bottom:6px;
+    background:linear-gradient(90deg,var(--gold),var(--sunset))}
+  .modal__name{font-family:"Fredoka";font-weight:600;font-size:1.9rem;color:var(--cream);margin:4px 0 2px}
+  .modal__price{font-family:"Press Start 2P",monospace;font-size:1.15rem;color:var(--accent);
+    margin:6px 0 12px;display:flex;gap:8px;align-items:baseline;justify-content:center;flex-wrap:wrap}
+  .modal__price s{opacity:.45;font-size:.7em;color:var(--muted)}
+  .modal__desc{color:var(--cream);font-size:1rem;line-height:1.7;margin:6px auto 4px;max-width:42ch}
+  .modal__features{text-align:left;max-width:400px;margin:14px auto 4px}
+  .modal__features li{padding:6px 0;color:var(--cream);font-size:.95rem;display:flex;gap:9px;align-items:flex-start}
+  .modal__features li::before{content:"◆";color:var(--accent);font-size:.7rem;margin-top:6px}
+  .modal__pseudo{max-width:400px;margin:18px auto 0;text-align:left}
+  .modal__buy{display:flex;gap:10px;max-width:400px;margin:14px auto 0}
+  .modal__secure{display:block;color:var(--muted);font-size:.84rem;margin-top:14px}
+  body.modal-open{overflow:hidden}
+  @media (max-width:560px){.modal__card{padding:30px 20px 26px}.modal__name{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="petals" aria-hidden="true"></div>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html" aria-label="Tryzaria Survival">
+      <img src="assets/img/logo.png" alt="" />
+      <span style="display:flex;flex-direction:column;line-height:1"><b style="font-size:1.2rem">Tryzaria</b><span>survival</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="lang-toggle" role="group" aria-label="Langue / Language"><button data-lang="fr">FR</button><button data-lang="en">EN</button></div>
+      <a class="btn btn-discord btn-sm" href="https://dsc.gg/tryzaria" target="_blank" rel="noopener" data-i18n="btn_discord">Discord</a>
+      <div class="ip ip--header"><span class="ip__code">91.197.6.177:25325</span><button class="ip__btn" data-copy-ip data-i18n="btn_copy">Copier</button></div>
+    </div>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="shop-note reveal" id="shop-eyebrow">Boutique en jeu</span>
+    <h1 class="h-section" style="margin-top:18px" id="shop-h1">Soutiens Tryzaria</h1>
+    <p class="lead center" style="margin-top:12px" id="shop-lead">Choisis ton pseudo, ton article, paie — et reçois ta récompense en jeu automatiquement.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+
+    <div class="shop-panel reveal is-revealed">
+      <div class="shop-field">
+        <label for="shop-pseudo" id="shop-pseudo-label">Ton pseudo Minecraft (celui en jeu)</label>
+        <input id="shop-pseudo" type="text" maxlength="24" autocomplete="off" spellcheck="false" placeholder="Pseudo exact" />
+      </div>
+      <div class="shop-field">
+        <label for="shop-coupon" id="shop-coupon-label">Code promo (optionnel)</label>
+        <div class="shop-coupon-row">
+          <input id="shop-coupon" type="text" maxlength="40" autocomplete="off" spellcheck="false" placeholder="Ex : LAUNCH10" />
+          <button class="btn btn-ghost btn-sm" id="shop-coupon-apply" type="button">Appliquer</button>
+        </div>
+        <span class="shop-coupon-msg" id="shop-coupon-msg" role="status"></span>
+      </div>
+    </div>
+
+    <div class="shop-grid" id="shop-catalog">
+      <div class="shop-loading"><div class="spinner"></div><span id="shop-loading-text">Chargement de la boutique…</span></div>
+    </div>
+
+    <span class="shop-note" id="shop-secure">🔒 Paiement sécurisé via Stripe &amp; PayPal. Aucune donnée bancaire ne passe par Tryzaria.</span>
+    <span class="shop-note" id="shop-delivery">Hors-ligne au moment de l'achat ? Livraison automatique à ta prochaine connexion.</span>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div><div class="ftr__brand"><img src="assets/img/logo.png" alt="" /><b>Tryzaria <span style="color:var(--sakura)">Survival</span></b></div>
+        <p style="color:var(--muted);max-width:34ch" data-i18n="ftr_tagline">Serveur Minecraft survie 2.0 — boss, monde et armes custom. Casse la routine vanilla.</p></div>
+      <div><h5 data-i18n="ftr_nav">Navigation</h5><a href="index.html" data-i18n="nav_home">Accueil</a></div>
+      <div><h5 data-i18n="ftr_com">Communauté</h5><a href="https://dsc.gg/tryzaria" target="_blank" rel="noopener" data-i18n="btn_discord">Discord</a></div>
+    </div>
+    <div class="ftr__bottom"><span data-i18n="ftr_rights">© 2026 Tryzaria Survival. Non affilié à Mojang / Microsoft.</span><span>Java &amp; Cracked · 1.21.4+</span></div>
+  </div>
+</footer>
+<div class="modal" id="shop-modal" hidden aria-hidden="true">
+  <div class="modal__overlay" data-close></div>
+  <div class="modal__card" id="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-name">
+    <button class="modal__close" data-close aria-label="Fermer">✕</button>
+    <div id="modal-content"></div>
+  </div>
+</div>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/shop-config.js"></script>
+<script src="assets/js/shop.js"></script>
+</body>
+</html>

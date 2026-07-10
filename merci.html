@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Merci — Tryzaria Survival</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+  .return-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .return-card{max-width:520px;width:100%;text-align:center;background:var(--glass);
+    border:1px solid var(--glass-brd);border-radius:var(--radius-lg);padding:42px 30px;
+    backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+  .return-mark{width:92px;height:92px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;
+    font-size:2.6rem;animation:pop .5s var(--ease) both}
+  .return-mark--ok{background:radial-gradient(circle at 50% 35%,rgba(90,231,138,.35),rgba(0,0,0,.15));
+    border:2px solid #5ae78a;color:#5ae78a}
+  @keyframes pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  .return-card h1{font-family:"Fredoka";font-size:1.9rem;color:var(--cream);margin-bottom:10px}
+  .return-card p{color:var(--muted);max-width:42ch;margin:0 auto 8px}
+  .return-sub{font-size:.9rem;color:var(--gold);font-weight:700;margin-top:10px}
+  .return-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  @media (max-width:520px){.return-card{padding:32px 20px}.return-btns .btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="petals" aria-hidden="true"></div>
+
+<div class="return-wrap">
+  <div class="return-card">
+    <div class="return-mark return-mark--ok">✓</div>
+    <h1 id="m-title">Merci pour ton achat !</h1>
+    <p id="m-msg"></p>
+    <p class="return-sub" id="m-sub"></p>
+    <div class="return-btns">
+      <a class="btn btn-gold" href="boutique.html" id="m-shop">Retour à la boutique</a>
+      <a class="btn btn-ghost" href="index.html" id="m-home">Accueil</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var TX = {
+    fr: {
+      title: "Merci pour ton achat !",
+      msg: "Ton paiement est confirmé. Ta récompense arrive en jeu dans quelques instants.",
+      sub: "Connecte-toi (ou reconnecte-toi) pour la recevoir automatiquement.",
+      shop: "Retour à la boutique", home: "Accueil",
+    },
+    en: {
+      title: "Thank you for your purchase!",
+      msg: "Your payment is confirmed. Your reward is on its way in-game.",
+      sub: "Log in (or reconnect) to receive it automatically.",
+      shop: "Back to shop", home: "Home",
+    },
+  };
+  function lang() { try { return localStorage.getItem("tryz_lang") === "en" ? "en" : "fr"; } catch (e) { return "fr"; } }
+  var x = TX[lang()];
+  document.documentElement.lang = lang();
+  document.getElementById("m-title").textContent = x.title;
+  document.getElementById("m-msg").textContent = x.msg;
+  document.getElementById("m-sub").textContent = x.sub;
+  document.getElementById("m-shop").textContent = x.shop;
+  document.getElementById("m-home").textContent = x.home;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-i18n="title_social">Réseaux — Tryzaria Survival</title>
+<meta name="description" content="Suis Tryzaria Survival sur Instagram, YouTube et TikTok." />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+  .soc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;max-width:900px;margin:0 auto}
+  .soc-card{position:relative;overflow:hidden;border-radius:var(--radius-lg);padding:30px 24px 26px;text-align:center;
+    background:var(--glass);border:1px solid var(--glass-brd);transition:transform .18s var(--ease),box-shadow .18s}
+  .soc-card:hover{transform:translateY(-6px);box-shadow:0 24px 54px -22px rgba(0,0,0,.7)}
+  .soc-card::before{content:"";position:absolute;inset:0 0 auto 0;height:5px;background:var(--grad)}
+  .soc-ico{width:84px;height:84px;border-radius:22px;display:grid;place-items:center;margin:0 auto 14px;
+    font-size:2.6rem;background:var(--grad);box-shadow:0 12px 30px -10px var(--glow)}
+  .soc-card h3{font-family:"Fredoka";font-weight:600;font-size:1.4rem;color:var(--cream)}
+  .soc-card .handle{display:block;color:var(--muted);font-size:.92rem;margin:4px 0 18px}
+  .soc-card .btn{width:100%}
+  .soc-ig{--grad:linear-gradient(135deg,#feda75,#fa7e1e,#d62976,#962fbf,#4f5bd5);--glow:rgba(214,41,118,.6)}
+  .soc-yt{--grad:linear-gradient(135deg,#ff4e45,#c4302b);--glow:rgba(196,48,43,.6)}
+  .soc-tt{--grad:linear-gradient(135deg,#25f4ee,#000,#fe2c55);--glow:rgba(254,44,85,.55)}
+  .soc-card .btn-follow{border:none;color:#fff;background:var(--grad)}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="petals" aria-hidden="true"></div>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html" aria-label="Tryzaria Survival">
+      <img src="assets/img/logo.png" alt="" />
+      <span style="display:flex;flex-direction:column;line-height:1"><b style="font-size:1.2rem">Tryzaria</b><span>survival</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="boutique.html" data-i18n="nav_shop">Boutique</a>
+      <a href="wiki.html" data-i18n="nav_wiki">Wiki</a>
+      <a href="reseaux.html" class="is-active" data-i18n="nav_social">Réseaux</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="lang-toggle" role="group" aria-label="Langue / Language"><button data-lang="fr">FR</button><button data-lang="en">EN</button></div>
+      <a class="btn btn-discord btn-sm" href="https://dsc.gg/tryzaria" target="_blank" rel="noopener" data-i18n="btn_discord">Discord</a>
+      <div class="ip ip--header"><span class="ip__code">91.197.6.177:25325</span><button class="ip__btn" data-copy-ip data-i18n="btn_copy">Copier</button></div>
+    </div>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="social_eyebrow">Reste connecté</span>
+    <h1 class="h-section" data-i18n="social_title">Les réseaux de Tryzaria</h1>
+    <p class="lead center" style="margin-top:12px" data-i18n="social_sub">Suis-nous pour les nouveautés, les events, les coulisses et les annonces du serveur.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap">
+    <div class="soc-grid">
+      <article class="soc-card soc-ig reveal">
+        <div class="soc-ico">📸</div>
+        <h3>Instagram</h3><span class="handle">@tryzaria</span>
+        <a class="btn btn-follow" href="https://www.instagram.com/tryzaria/" target="_blank" rel="noopener" data-i18n="social_follow">Suivre</a>
+      </article>
+      <article class="soc-card soc-yt reveal">
+        <div class="soc-ico">▶️</div>
+        <h3>YouTube</h3><span class="handle">@TryzYTB</span>
+        <a class="btn btn-follow" href="https://www.youtube.com/@TryzYTB" target="_blank" rel="noopener" data-i18n="social_sub_btn">S'abonner</a>
+      </article>
+      <article class="soc-card soc-tt reveal">
+        <div class="soc-ico">🎵</div>
+        <h3>TikTok</h3><span class="handle">@tryzttk</span>
+        <a class="btn btn-follow" href="https://www.tiktok.com/@tryzttk" target="_blank" rel="noopener" data-i18n="social_follow">Suivre</a>
+      </article>
+    </div>
+
+    <div class="cta-band reveal" style="margin-top:34px;background:linear-gradient(120deg,rgba(88,101,242,.20),rgba(88,101,242,.08))">
+      <div><h3 data-i18n="social_dc_t">Et le Discord ?</h3><p data-i18n="social_dc_d">Le cœur de la communauté : annonces, events, entraide et vocaux.</p></div>
+      <a class="btn btn-discord" href="https://dsc.gg/tryzaria" target="_blank" rel="noopener" data-i18n="cta_discord_b">Rejoindre le Discord</a>
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div><div class="ftr__brand"><img src="assets/img/logo.png" alt="" /><b>Tryzaria <span style="color:var(--sakura)">Survival</span></b></div>
+        <p style="color:var(--muted);max-width:34ch" data-i18n="ftr_tagline">Serveur Minecraft survie 2.0 — boss, mondes et caisses custom. Casse la routine vanilla.</p></div>
+      <div><h5 data-i18n="ftr_nav">Navigation</h5><a href="index.html" data-i18n="nav_home">Accueil</a><a href="boutique.html" data-i18n="nav_shop">Boutique</a><a href="wiki.html" data-i18n="nav_wiki">Wiki</a><a href="reseaux.html" data-i18n="nav_social">Réseaux</a></div>
+      <div><h5 data-i18n="ftr_com">Communauté</h5><a href="https://dsc.gg/tryzaria" target="_blank" rel="noopener" data-i18n="btn_discord">Discord</a><a href="https://www.instagram.com/tryzaria/" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@TryzYTB" target="_blank" rel="noopener">YouTube</a><a href="https://www.tiktok.com/@tryzttk" target="_blank" rel="noopener">TikTok</a></div>
+    </div>
+    <div class="ftr__bottom"><span data-i18n="ftr_rights">© 2026 Tryzaria Survival. Non affilié à Mojang / Microsoft.</span><span>Java &amp; Cracked · 1.21.4+</span></div>
+  </div>
+</footer>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+(function () {
+  if (!window.TryzariaI18n) return;
+  Object.assign(TryzariaI18n.T.fr, {
+    nav_social: "Réseaux", title_social: "Réseaux — Tryzaria Survival",
+    social_eyebrow: "Reste connecté", social_title: "Les réseaux de Tryzaria",
+    social_sub: "Suis-nous pour les nouveautés, les events, les coulisses et les annonces du serveur.",
+    social_follow: "Suivre", social_sub_btn: "S'abonner",
+    social_dc_t: "Et le Discord ?", social_dc_d: "Le cœur de la communauté : annonces, events, entraide et vocaux.",
+  });
+  Object.assign(TryzariaI18n.T.en, {
+    nav_social: "Socials", title_social: "Socials — Tryzaria Survival",
+    social_eyebrow: "Stay connected", social_title: "Tryzaria's socials",
+    social_sub: "Follow us for news, events, behind-the-scenes and server announcements.",
+    social_follow: "Follow", social_sub_btn: "Subscribe",
+    social_dc_t: "What about Discord?", social_dc_d: "The heart of the community: announcements, events, help and voice chat.",
+  });
+  var lang = "fr";
+  try { var s = localStorage.getItem("tryz_lang"); if (s === "fr" || s === "en") lang = s; } catch (e) {}
+  TryzariaI18n.apply(lang);
+})();
+</script>
+</body>
+</html>
