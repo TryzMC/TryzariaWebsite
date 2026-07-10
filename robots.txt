@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /merci.html
+Disallow: /annule.html
+
+Sitemap: https://tryzaria.fr/sitemap.xml

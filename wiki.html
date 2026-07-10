@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title data-i18n="title_wiki">Wiki — Boss, mondes, caisses &amp; FAQ | Tryzaria Survival</title>
+<meta name="description" content="Le wiki Tryzaria Survival : bien démarrer, boss custom, mondes, caisses, toolsmith, votes, règles et FAQ." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://tryzaria.fr/wiki.html" />
+<meta name="theme-color" content="#241439" />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+
+<!-- Open Graph / réseaux sociaux -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Tryzaria Survival" />
+<meta property="og:locale" content="fr_FR" />
+<meta property="og:title" content="Wiki — Boss, mondes, caisses & FAQ | Tryzaria Survival" />
+<meta property="og:description" content="Bien démarrer, boss custom, mondes, caisses, toolsmith, votes, règles et FAQ." />
+<meta property="og:url" content="https://tryzaria.fr/wiki.html" />
+<meta property="og:image" content="https://tryzaria.fr/assets/img/banner.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Wiki — Boss, mondes, caisses & FAQ | Tryzaria Survival" />
+<meta name="twitter:description" content="Bien démarrer, boss custom, mondes, caisses, toolsmith, votes, règles et FAQ." />
+<meta name="twitter:image" content="https://tryzaria.fr/assets/img/banner.jpg" />
+
+<!-- FAQPage — reprend les questions/réponses visibles plus bas (section Règles & FAQ) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Le serveur est-il accessible en Cracked ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui — Java officiel et Cracked sont acceptés, même IP : play.tryzaria.fr." }
+    },
+    {
+      "@type": "Question",
+      "name": "Quelle version utiliser ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Minecraft Java 1.21.4 ou plus récent." }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment signaler un bug ou un joueur ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Via notre Discord — ouvre un ticket au staff." }
+    }
+  ]
+}
+</script>
+<style>
+  /* Boss */
+  .boss-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(238px,1fr));gap:16px;margin-top:16px}
+  .boss-card{--el:#888;background:var(--glass);border:1px solid var(--glass-brd);border-left:4px solid var(--el);
+    border-radius:14px;padding:16px 18px;transition:transform .15s var(--ease),box-shadow .15s}
+  .boss-card:hover{transform:translateY(-4px);box-shadow:0 16px 36px -18px rgba(0,0,0,.7)}
+  .boss-card .el{display:inline-block;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;
+    color:var(--el);border:1px solid var(--el);border-radius:999px;padding:2px 10px;margin-bottom:8px}
+  .boss-card h4{font-family:"Fredoka";font-size:1.2rem;color:var(--cream);margin-bottom:5px}
+  .boss-card p{color:var(--muted);font-size:.92rem;margin:0}
+  /* Caisses */
+  .crate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:14px;margin-top:16px}
+  .crate-card{background:var(--glass);border:1px solid var(--glass-brd);border-radius:14px;padding:16px 10px;text-align:center;
+    transition:transform .15s var(--ease)}
+  .crate-card:hover{transform:translateY(-4px)}
+  .crate-card img{width:74px;height:74px;object-fit:contain;margin:0 auto 8px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.5))}
+  .crate-card b{font-family:"Fredoka";color:var(--cream);font-size:1rem}
+  .crate-card span{display:block;font-size:.74rem;color:var(--muted);margin-top:2px}
+  /* Toolsmith */
+  .ts-figs{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:16px}
+  .ts-fig{background:var(--glass);border:1px solid var(--glass-brd);border-radius:14px;padding:10px}
+  .ts-fig img{width:100%;border-radius:10px;display:block;max-height:340px;object-fit:cover}
+  .ts-fig figcaption{color:var(--muted);font-size:.86rem;margin-top:8px;text-align:center}
+  /* Votes */
+  .vote-list{display:grid;gap:12px;margin-top:16px}
+  .vote-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    background:var(--glass);border:1px solid var(--glass-brd);border-radius:14px;padding:14px 18px}
+  .vote-row b{font-family:"Fredoka";color:var(--cream);font-size:1.05rem}
+  .vote-row span{display:block;color:var(--muted);font-size:.86rem}
+  /* Mondes : carte Arène pleine largeur */
+  .world-card--wide{grid-column:1/-1}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="petals" aria-hidden="true"></div>
+
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="brand" href="index.html" aria-label="Tryzaria Survival">
+      <img src="assets/img/logo.png" alt="" />
+      <span style="display:flex;flex-direction:column;line-height:1"><b style="font-size:1.2rem">Tryzaria</b><span>survival</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigation">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="boutique.html" data-i18n="nav_shop">Boutique</a>
+      <a href="wiki.html" class="is-active" data-i18n="nav_wiki">Wiki</a>
+      <a href="reseaux.html" data-i18n="nav_social">Réseaux</a>
+    </nav>
+    <div class="nav-tools">
+      <div class="lang-toggle" role="group" aria-label="Langue / Language"><button data-lang="fr">FR</button><button data-lang="en">EN</button></div>
+      <a class="btn btn-discord btn-sm" href="https://dsc.gg/tryzaria" target="_blank" rel="noopener" data-i18n="btn_discord">Discord</a>
+      <div class="ip ip--header"><span class="ip__code">play.tryzaria.fr</span><button class="ip__btn" data-copy-ip data-i18n="btn_copy">Copier</button></div>
+    </div>
+    <button class="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow" data-i18n="wiki_eyebrow">Guide du serveur</span>
+    <h1 class="h-section" data-i18n="wiki_title">Wiki Tryzaria</h1>
+    <p class="lead center" style="margin-top:12px" data-i18n="wiki_sub">Tout pour bien démarrer et maîtriser la survie 2.0 sur Tryzaria.</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="wrap wiki">
+    <nav class="wiki-nav" aria-label="Sections du wiki">
+      <button class="is-active" data-panel="start" data-i18n="wk_start">🌱 Bien démarrer</button>
+      <button data-panel="boss" data-i18n="wk_boss">⚔️ Boss</button>
+      <button data-panel="worlds" data-i18n="wk_worlds">🌸 Mondes</button>
+      <button data-panel="crates" data-i18n="wk_crates">🎁 Caisses</button>
+      <button data-panel="toolsmith" data-i18n="wk_toolsmith">🔨 Toolsmith</button>
+      <button data-panel="votes" data-i18n="wk_votes">🗳️ Votes</button>
+      <button data-panel="rules" data-i18n="wk_rules">📜 Règles &amp; FAQ</button>
+    </nav>
+    <div>
+
+      <!-- BIEN DÉMARRER -->
+      <article class="wiki-panel is-active" id="start">
+        <h2 data-i18n="w_start_h">Bien démarrer</h2>
+        <p data-i18n="w_start_p">Bienvenue sur Tryzaria Survival ! Voici les bases pour lancer ton aventure.</p>
+        <p data-i18n="w_start_p2">Tryzaria, c'est la survie repensée : des boss faits main, des mondes entièrement custom, une économie vivante, des grades, des caisses et bien plus. Pas besoin d'être un pro — prends ton temps, explore, construis ta base, rejoins une communauté accueillante et grimpe les rangs à ton rythme. Ce guide regroupe tout ce qu'il faut savoir pour ne rien rater.</p>
+        <h3 data-i18n="w_connect_h">Se connecter</h3>
+        <ul class="dot">
+          <li data-i18n="w_connect1">Minecraft <strong>Java 1.21.4</strong> ou toute version plus récente.</li>
+          <li data-i18n="w_connect2">Comptes officiels (premium) <strong>et</strong> Cracked acceptés.</li>
+          <li><span data-i18n="w_connect_ip">IP du serveur :</span> <code style="font-family:'Press Start 2P';font-size:.66rem;color:var(--diamond);background:rgba(90,215,234,.14);padding:2px 8px;border-radius:7px">play.tryzaria.fr</code></li>
+        </ul>
+        <div class="wiki-tip" data-i18n="w_bedrock_tip">🎮 Le support Bedrock (mobile / console) est prévu — bientôt parmi nous !</div>
+        <h3 data-i18n="w_steps_h">Tes premiers pas</h3>
+        <ul class="dot">
+          <li data-i18n="w_step1">Tape /spawn pour rejoindre la place centrale.</li>
+          <li data-i18n="w_step2">Pose ton point de retour avec /sethome, reviens-y avec /home.</li>
+          <li data-i18n="w_step3">Protège ta base avec un claim.</li>
+          <li data-i18n="w_step4">Vote chaque jour et ouvre tes caisses pour des récompenses.</li>
+        </ul>
+        <h3 data-i18n="w_cmds_h">Commandes utiles</h3>
+        <ul class="dot">
+          <li data-i18n="w_cmd1">/spawn — revenir à la place centrale.</li>
+          <li data-i18n="w_cmd2">/sethome, /home, /delhome — gérer tes points de retour.</li>
+          <li data-i18n="w_cmd3">/tpa &lt;joueur&gt; — demander à te téléporter chez quelqu'un.</li>
+          <li data-i18n="w_cmd4">/msg &lt;joueur&gt; — envoyer un message privé.</li>
+          <li data-i18n="w_cmd5">/balance, /pay — consulter ton argent et payer un joueur.</li>
+          <li data-i18n="w_cmd6">/warp Crates, /arena — accéder aux caisses et aux arènes de boss.</li>
+        </ul>
+        <div class="wiki-tip" data-i18n="w_start_tip">💬 Perdu ? Demande sur le Discord, la communauté et le staff sont là pour aider.</div>
+      </article>
+
+      <!-- BOSS -->
+      <article class="wiki-panel" id="boss">
+        <h2 data-i18n="w_boss_h">Boss custom</h2>
+        <p data-i18n="w_boss_p">Cinq créatures faites main, chacune avec ses mécaniques, ses attaques et son loot légendaire. Elles apparaissent dans les arènes — viens préparé.</p>
+        <img src="assets/img/boss/roster.jpg" alt="Les boss de Tryzaria" loading="lazy" style="width:100%;border-radius:14px;margin:8px 0 6px" />
+        <p data-i18n="w_boss_p2">Oublie les zombies qui traînent : ici, chaque boss a son thème, ses phases de combat et ses attaques signature. Certains invoquent des renforts, d'autres frappent en zone ou se soignent — apprends leurs patterns pour ne pas finir au cimetière. Le butin est à la hauteur du défi : équipements rares, ressources précieuses et clés de caisses parmi les plus convoitées du serveur.</p>
+        <h3 data-i18n="w_boss_list_h">Le bestiaire</h3>
+        <div class="boss-grid">
+          <div class="boss-card" style="--el:#86c544"><span class="el" data-i18n="w_b1_e">Forêt</span><h4 data-i18n="w_b1_n">Colosse Sylvestre</h4><p data-i18n="w_b1_d">Un titan de bois et de pierre, gardien des profondeurs de la forêt.</p></div>
+          <div class="boss-card" style="--el:#9b6cff"><span class="el" data-i18n="w_b2_e">Ancien</span><h4 data-i18n="w_b2_n">Gardien Ancestral</h4><p data-i18n="w_b2_d">Une entité oubliée aux pouvoirs anciens, réveillée par les imprudents.</p></div>
+          <div class="boss-card" style="--el:#46d6e6"><span class="el" data-i18n="w_b3_e">Abysses</span><h4 data-i18n="w_b3_n">Le Veilleur</h4><p data-i18n="w_b3_d">Tapi dans les ténèbres, il te traque au moindre bruit. Le combat le plus intense.</p></div>
+          <div class="boss-card" style="--el:#e0554d"><span class="el" data-i18n="w_b4_e">Brute</span><h4 data-i18n="w_b4_n">Minotaure</h4><p data-i18n="w_b4_d">Une force brutale qui charge sans relâche dans son labyrinthe.</p></div>
+          <div class="boss-card" style="--el:#ff7a3d"><span class="el" data-i18n="w_b5_e">Feu</span><h4 data-i18n="w_b5_n">Drake Ardent</h4><p data-i18n="w_b5_d">Un dragon cracheur de flammes terré au fond des donjons.</p></div>
+        </div>
+        <div class="wiki-tip" data-i18n="w_boss_tip">⚔️ Prépare ton stuff et viens en groupe — certains boss ne se battent pas en solo.</div>
+        <h3 data-i18n="w_boss_loot_h">Récompenses</h3>
+        <p data-i18n="w_boss_loot_p">Vaincre un boss garantit un butin, mais les pièces les plus rares (skins d'outils, équipements signature, grosses clés) tombent selon la chance — réessaie pour compléter ta collection. Plus le boss est redoutable, meilleur est le loot. Affronte-les régulièrement : ils réapparaissent dans les arènes après un temps de repos.</p>
+      </article>
+
+      <!-- MONDES -->
+      <article class="wiki-panel" id="worlds">
+        <h2 data-i18n="w_worlds_h">Mondes</h2>
+        <p data-i18n="w_worlds_p">Overworld, Nether et End entièrement retravaillés — plus un monde Arène dédié aux boss.</p>
+        <p data-i18n="w_worlds_p2">Chaque dimension a sa propre ambiance et ses défis : biomes revisités, structures custom, donjons et coins secrets à découvrir. Que tu sois explorateur, bâtisseur ou chasseur de boss, il y a toujours une nouvelle zone à conquérir. Pense à poser des homes dans tes spots préférés pour y revenir vite.</p>
+        <div class="worlds-grid">
+          <article class="world-card" style="--w:#5fae3a">
+            <img src="assets/img/worlds/overworld.jpg" alt="Overworld custom" loading="lazy" />
+            <div class="world-card__body"><span class="world-tag">Overworld</span>
+              <h3 data-i18n="w_over_n">Un Overworld vivant</h3>
+              <p data-i18n="w_over_d">Des biomes retravaillés, une flore et une faune custom, des paysages à couper le souffle.</p></div>
+          </article>
+          <article class="world-card" style="--w:#b13ad0">
+            <img src="assets/img/worlds/nether.jpg" alt="Nether custom" loading="lazy" />
+            <div class="world-card__body"><span class="world-tag">Nether</span>
+              <h3 data-i18n="w_nether_n">Un Nether sous tension</h3>
+              <p data-i18n="w_nether_d">Des cavernes hostiles aux teintes pourpres, entre lave, créatures et trésors.</p></div>
+          </article>
+          <article class="world-card" style="--w:#8b5cff">
+            <img src="assets/img/worlds/end.jpg" alt="End custom" loading="lazy" />
+            <div class="world-card__body"><span class="world-tag">End</span>
+              <h3 data-i18n="w_end_n">Un End mystérieux</h3>
+              <p data-i18n="w_end_d">Des îles flottantes, des cités oubliées et des secrets pour les plus braves.</p></div>
+          </article>
+          <article class="world-card world-card--wide" style="--w:#f6c94a">
+            <img src="assets/img/wiki/arene.png" alt="Monde Arène" loading="lazy" />
+            <div class="world-card__body"><span class="world-tag">Arène</span>
+              <h3 data-i18n="w_arena_n">Le monde Arène</h3>
+              <p data-i18n="w_arena_d" data-i18n-html>Six arènes différentes où les <a href="#" data-goto="boss" style="color:var(--gold);text-decoration:underline">boss</a> apparaissent aléatoirement. Rejoins-les avec la commande /arena.</p></div>
+          </article>
+        </div>
+      </article>
+
+      <!-- CAISSES -->
+      <article class="wiki-panel" id="crates">
+        <h2 data-i18n="w_crates_h">Caisses</h2>
+        <p data-i18n="w_crates_p">Six caisses, de la plus commune à la plus rare et puissante. Récupère les clés en votant, en boutique ou lors d'events.</p>
+        <div class="wiki-tip" data-i18n="w_crates_access">🧭 Accès : commande /warp Crates, ou le portail du Nether sur le spawn.</div>
+        <p data-i18n="w_crates_p2">Chaque caisse possède sa propre table de loot : plus le palier est élevé, plus les récompenses sont rares et puissantes — cosmétiques, équipements, ressources, argent en jeu, et même la table Toolsmith dans la Légendaire. Approche-toi d'une caisse avec la bonne clé en inventaire, fais un clic droit, et tente ta chance. Les clés ne se périment pas : tu peux en accumuler avant de tout ouvrir d'un coup pour le plaisir.</p>
+        <div class="crate-grid">
+          <div class="crate-card"><img src="assets/img/shop/votecrate.png" alt="" loading="lazy" /><b data-i18n="w_c_vote">Vote</b><span data-i18n="w_c_vote_t">Palier 1</span></div>
+          <div class="crate-card"><img src="assets/img/shop/rarecommon.png" alt="" loading="lazy" /><b data-i18n="w_c_common">Commune</b><span data-i18n="w_c_common_t">Palier 2</span></div>
+          <div class="crate-card"><img src="assets/img/shop/rarecrate.png" alt="" loading="lazy" /><b data-i18n="w_c_rare">Rare</b><span data-i18n="w_c_rare_t">Palier 3</span></div>
+          <div class="crate-card"><img src="assets/img/shop/epiccrate.png" alt="" loading="lazy" /><b data-i18n="w_c_epic">Épique</b><span data-i18n="w_c_epic_t">Palier 4</span></div>
+          <div class="crate-card"><img src="assets/img/shop/legendarycrate.png" alt="" loading="lazy" /><b data-i18n="w_c_legend">Légendaire</b><span data-i18n="w_c_legend_t">Palier 5</span></div>
+          <div class="crate-card"><img src="assets/img/shop/bosscrate.png" alt="" loading="lazy" /><b data-i18n="w_c_boss">Boss</b><span data-i18n="w_c_boss_t">Palier 6</span></div>
+        </div>
+      </article>
+
+      <!-- TOOLSMITH -->
+      <article class="wiki-panel" id="toolsmith">
+        <h2 data-i18n="w_ts_h">Toolsmith — personnalise tes outils</h2>
+        <p data-i18n="w_ts_p">Tryzaria ajoute une table spéciale qui change l'apparence (la texture) de tes outils, sans toucher à leurs statistiques.</p>
+        <p data-i18n="w_ts_p2">Cette table s'obtient dans la caisse <strong>Légendaire</strong>.</p>
+        <p data-i18n="w_ts_p3">L'idée : garder la puissance de ton stuff tout en lui donnant un style unique. Une pioche en netherite peut ressembler à tout autre chose, sans perdre ses enchantements ni sa durabilité. C'est purement cosmétique — parfait pour te démarquer en jeu.</p>
+        <h3 data-i18n="w_ts_steps_h">Comment l'utiliser</h3>
+        <ul class="dot">
+          <li data-i18n="w_ts_step1">Récupère la table Toolsmith dans une caisse Légendaire, puis pose-la.</li>
+          <li data-i18n="w_ts_step2">Fais un clic droit sur la table pour ouvrir l'interface.</li>
+          <li data-i18n="w_ts_step3">Place ton outil, choisis l'apparence voulue, valide — c'est appliqué !</li>
+        </ul>
+        <div class="ts-figs">
+          <figure class="ts-fig"><img src="assets/img/wiki/screentoolsmith.png" alt="Table Toolsmith en jeu" loading="lazy" /><figcaption data-i18n="w_ts_cap1">La table Toolsmith en jeu.</figcaption></figure>
+          <figure class="ts-fig"><img src="assets/img/wiki/imagecommentfaire.png" alt="Comment utiliser la table" loading="lazy" /><figcaption data-i18n="w_ts_cap2">Comment l'utiliser, étape par étape.</figcaption></figure>
+        </div>
+      </article>
+
+      <!-- VOTES -->
+      <article class="wiki-panel" id="votes">
+        <h2 data-i18n="w_votes_h">Votes</h2>
+        <p data-i18n="w_votes_p">Vote pour Tryzaria et gagne 1 clé de Vote par vote. Trois sites = jusqu'à 3 clés par jour.</p>
+        <p data-i18n="w_votes_p2">Voter, c'est gratuit et ça prend 30 secondes : tu entres ton pseudo sur le site, tu valides, et ta clé arrive en jeu. C'est le meilleur moyen de soutenir le serveur — chaque vote le fait grimper dans les classements et attire de nouveaux joueurs. Pense à voter tous les jours sur les 3 sites pour maximiser tes clés.</p>
+        <div class="vote-list">
+          <div class="vote-row"><span><b>ServeursMinecraft.org</b><span data-i18n="w_vote1">Le top des serveurs FR.</span></span><a class="btn btn-gold btn-sm" href="https://www.serveursminecraft.org/serveur/7635" target="_blank" rel="noopener" data-i18n="w_vote_btn">🗳️ Voter</a></div>
+          <div class="vote-row"><span><b>Serveur-Minecraft-Vote.fr</b><span data-i18n="w_vote2">Page de vote dédiée à Tryzaria.</span></span><a class="btn btn-gold btn-sm" href="https://serveur-minecraft-vote.fr/serveurs/tryzaria.2499/vote" target="_blank" rel="noopener" data-i18n="w_vote_btn">🗳️ Voter</a></div>
+          <div class="vote-row"><span><b>Serveur-Minecraft.com</b><span data-i18n="w_vote3">Encore un vote, encore de la visibilité.</span></span><a class="btn btn-gold btn-sm" href="https://serveur-minecraft.com/5587" target="_blank" rel="noopener" data-i18n="w_vote_btn">🗳️ Voter</a></div>
+        </div>
+        <div class="wiki-tip" data-i18n="w_votes_tip">🗳️ Les clés de Vote ouvrent la caisse Vote.</div>
+      </article>
+
+      <!-- RÈGLES & FAQ -->
+      <article class="wiki-panel" id="rules">
+        <h2 data-i18n="w_rules_h">Règles &amp; FAQ</h2>
+        <p data-i18n="w_rules_intro">Tryzaria se veut accueillant pour tout le monde. Ces quelques règles garantissent une bonne ambiance pour tous — les enfreindre peut mener à un avertissement, un mute ou un ban selon la gravité. En jouant sur le serveur, tu acceptes de les respecter.</p>
+        <h3 data-i18n="w_rules_sub">Règles du serveur</h3>
+        <ul class="dot">
+          <li data-i18n="w_rule1">Sois respectueux et garde le chat convenable (family friendly).</li>
+          <li data-i18n="w_rule2">Aucun harcèlement ni attaque verbale envers un autre joueur.</li>
+          <li data-i18n="w_rule3">Pas de spam, de pub, de MAJUSCULES abusives ni de messages répétés.</li>
+          <li data-i18n="w_rule4">Le hack ou toute forme de triche entraîne un ban.</li>
+          <li data-i18n="w_rule5">Exploiter un bug de duplication est interdit — tu DOIS prévenir un admin.</li>
+          <li data-i18n="w_rule6">Les lag machines (destinées à créer du lag) sont supprimées et entraînent un ban définitif.</li>
+          <li data-i18n="w_rule7">Ne mendie ni grade ni argent auprès des autres joueurs.</li>
+        </ul>
+        <div class="wiki-tip" data-i18n="w_rules_end">😄 Bon jeu sur Tryzaria !</div>
+        <h3 data-i18n="w_faq">FAQ</h3>
+        <h3 style="font-size:1.05rem;color:var(--cream)" data-i18n="w_faq1_q">Le serveur est-il accessible en Cracked ?</h3>
+        <p data-i18n="w_faq1_a">Oui — Java officiel et Cracked sont acceptés, même IP : play.tryzaria.fr.</p>
+        <h3 style="font-size:1.05rem;color:var(--cream)" data-i18n="w_faq2_q">Quelle version utiliser ?</h3>
+        <p data-i18n="w_faq2_a">Minecraft Java 1.21.4 ou plus récent.</p>
+        <h3 style="font-size:1.05rem;color:var(--cream)" data-i18n="w_faq3_q">Comment signaler un bug ou un joueur ?</h3>
+        <p data-i18n="w_faq3_a">Via notre Discord — ouvre un ticket au staff.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr__grid">
+      <div><div class="ftr__brand"><img src="assets/img/logo.png" alt="" /><b>Tryzaria <span style="color:var(--sakura)">Survival</span></b></div>
+        <p style="color:var(--muted);max-width:34ch" data-i18n="ftr_tagline">Serveur Minecraft survie 2.0 — boss, monde et armes custom. Casse la routine vanilla.</p></div>
+      <div><h5 data-i18n="ftr_nav">Navigation</h5><a href="index.html" data-i18n="nav_home">Accueil</a><a href="boutique.html" data-i18n="nav_shop">Boutique</a><a href="wiki.html" data-i18n="nav_wiki">Wiki</a><a href="reseaux.html" data-i18n="nav_social">Réseaux</a></div>
+      <div><h5 data-i18n="ftr_com">Communauté</h5><a href="https://dsc.gg/tryzaria" target="_blank" rel="noopener" data-i18n="btn_discord">Discord</a><a href="https://youtu.be/1xoir0Ie6Uo" target="_blank" rel="noopener" data-i18n="ftr_trailer">Trailer YouTube</a></div>
+    </div>
+    <div class="ftr__bottom"><span data-i18n="ftr_rights">© 2026 Tryzaria Survival. Non affilié à Mojang / Microsoft.</span><span>Java &amp; Cracked · 1.21.4+</span></div>
+  </div>
+</footer>
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+/* Traductions du wiki injectées dans le dico i18n existant (FR + EN). */
+(function () {
+  if (!window.TryzariaI18n) return;
+  var FR = {
+    nav_social: "Réseaux",
+    wk_start: "🌱 Bien démarrer", wk_boss: "⚔️ Boss", wk_worlds: "🌸 Mondes",
+    wk_crates: "🎁 Caisses", wk_toolsmith: "🔨 Toolsmith", wk_votes: "🗳️ Votes", wk_rules: "📜 Règles & FAQ",
+    wiki_eyebrow: "Guide du serveur", wiki_title: "Wiki Tryzaria",
+    wiki_sub: "Tout pour bien démarrer et maîtriser la survie 2.0 sur Tryzaria.",
+    w_start_h: "Bien démarrer", w_start_p: "Bienvenue sur Tryzaria Survival ! Voici les bases pour lancer ton aventure.",
+    w_connect_h: "Se connecter",
+    w_connect1: "Minecraft Java 1.21.4 ou toute version plus récente.",
+    w_connect2: "Comptes officiels (premium) et Cracked acceptés.",
+    w_connect_ip: "IP du serveur :",
+    w_bedrock_tip: "🎮 Le support Bedrock (mobile / console) est prévu — bientôt parmi nous !",
+    w_steps_h: "Tes premiers pas",
+    w_step1: "Tape /spawn pour rejoindre la place centrale.",
+    w_step2: "Pose ton point de retour avec /sethome, reviens-y avec /home.",
+    w_step3: "Protège ta base avec un claim.",
+    w_step4: "Vote chaque jour et ouvre tes caisses pour des récompenses.",
+    w_boss_h: "Boss custom",
+    w_boss_p: "Cinq créatures faites main, chacune avec ses mécaniques, ses attaques et son loot légendaire. Elles apparaissent dans les arènes — viens préparé.",
+    w_b1_e: "Forêt", w_b1_n: "Colosse Sylvestre", w_b1_d: "Un titan de bois et de pierre, gardien des profondeurs de la forêt.",
+    w_b2_e: "Ancien", w_b2_n: "Gardien Ancestral", w_b2_d: "Une entité oubliée aux pouvoirs anciens, réveillée par les imprudents.",
+    w_b3_e: "Abysses", w_b3_n: "Le Veilleur", w_b3_d: "Tapi dans les ténèbres, il te traque au moindre bruit. Le combat le plus intense.",
+    w_b4_e: "Brute", w_b4_n: "Minotaure", w_b4_d: "Une force brutale qui charge sans relâche dans son labyrinthe.",
+    w_b5_e: "Feu", w_b5_n: "Drake Ardent", w_b5_d: "Un dragon cracheur de flammes terré au fond des donjons.",
+    w_boss_tip: "⚔️ Prépare ton stuff et viens en groupe — certains boss ne se battent pas en solo.",
+    w_worlds_h: "Mondes",
+    w_worlds_p: "Overworld, Nether et End entièrement retravaillés — plus un monde Arène dédié aux boss.",
+    w_over_n: "Un Overworld vivant", w_over_d: "Des biomes retravaillés, une flore et une faune custom, des paysages à couper le souffle.",
+    w_nether_n: "Un Nether sous tension", w_nether_d: "Des cavernes hostiles aux teintes pourpres, entre lave, créatures et trésors.",
+    w_end_n: "Un End mystérieux", w_end_d: "Des îles flottantes, des cités oubliées et des secrets pour les plus braves.",
+    w_arena_n: "Le monde Arène",
+    w_arena_d: 'Six arènes différentes où les <a href="#" data-goto="boss" style="color:var(--gold);text-decoration:underline">boss</a> apparaissent aléatoirement. Rejoins-les avec la commande /arena.',
+    w_crates_h: "Caisses",
+    w_crates_p: "Six caisses, de la plus commune à la plus rare et puissante. Récupère les clés en votant, en boutique ou lors d'events.",
+    w_crates_access: "🧭 Accès : commande /warp Crates, ou le portail du Nether sur le spawn.",
+    w_c_common: "Commune", w_c_common_t: "Palier 2", w_c_vote: "Vote", w_c_vote_t: "Palier 1",
+    w_c_rare: "Rare", w_c_rare_t: "Palier 3", w_c_epic: "Épique", w_c_epic_t: "Palier 4",
+    w_c_legend: "Légendaire", w_c_legend_t: "Palier 5", w_c_boss: "Boss", w_c_boss_t: "Palier 6",
+    w_ts_h: "Toolsmith — personnalise tes outils",
+    w_ts_p: "Tryzaria ajoute une table spéciale qui change l'apparence (la texture) de tes outils, sans toucher à leurs statistiques.",
+    w_ts_p2: "Cette table s'obtient dans la caisse Légendaire.",
+    w_ts_cap1: "La table Toolsmith en jeu.", w_ts_cap2: "Comment l'utiliser, étape par étape.",
+    w_votes_h: "Votes",
+    w_votes_p: "Vote pour Tryzaria et gagne 1 clé de Vote par vote. Trois sites = jusqu'à 3 clés par jour.",
+    w_vote1: "Le top des serveurs FR.", w_vote2: "Page de vote dédiée à Tryzaria.", w_vote3: "Encore un vote, encore de la visibilité.",
+    w_vote_btn: "🗳️ Voter", w_votes_tip: "🗳️ Les clés de Vote ouvrent la caisse Vote.",
+    w_rules_h: "Règles & FAQ", w_rules_sub: "Règles du serveur",
+    w_rule1: "Sois respectueux et garde le chat convenable (family friendly).",
+    w_rule2: "Aucun harcèlement ni attaque verbale envers un autre joueur.",
+    w_rule3: "Pas de spam, de pub, de MAJUSCULES abusives ni de messages répétés.",
+    w_rule4: "Le hack ou toute forme de triche entraîne un ban.",
+    w_rule5: "Exploiter un bug de duplication est interdit — tu DOIS prévenir un admin.",
+    w_rule6: "Les lag machines (destinées à créer du lag) sont supprimées et entraînent un ban définitif.",
+    w_rule7: "Ne mendie ni grade ni argent auprès des autres joueurs.",
+    w_rules_end: "😄 Bon jeu sur Tryzaria !",
+    w_faq: "FAQ",
+    w_faq1_q: "Le serveur est-il accessible en Cracked ?", w_faq1_a: "Oui — Java officiel et Cracked sont acceptés, même IP : play.tryzaria.fr.",
+    w_faq2_q: "Quelle version utiliser ?", w_faq2_a: "Minecraft Java 1.21.4 ou plus récent.",
+    w_faq3_q: "Comment signaler un bug ou un joueur ?", w_faq3_a: "Via notre Discord — ouvre un ticket au staff.",
+    w_boss_p2: "Oublie les zombies qui traînent : ici, chaque boss a son thème, ses phases de combat et ses attaques signature. Certains invoquent des renforts, d'autres frappent en zone ou se soignent — apprends leurs patterns pour ne pas finir au cimetière. Le butin est à la hauteur du défi : équipements rares, ressources précieuses et clés de caisses parmi les plus convoitées du serveur.",
+    w_boss_list_h: "Le bestiaire",
+    w_boss_loot_h: "Récompenses",
+    w_boss_loot_p: "Vaincre un boss garantit un butin, mais les pièces les plus rares (skins d'outils, équipements signature, grosses clés) tombent selon la chance — réessaie pour compléter ta collection. Plus le boss est redoutable, meilleur est le loot. Affronte-les régulièrement : ils réapparaissent dans les arènes après un temps de repos.",
+    w_start_p2: "Tryzaria, c'est la survie repensée : des boss faits main, des mondes entièrement custom, une économie vivante, des grades, des caisses et bien plus. Pas besoin d'être un pro — prends ton temps, explore, construis ta base, rejoins une communauté accueillante et grimpe les rangs à ton rythme. Ce guide regroupe tout ce qu'il faut savoir pour ne rien rater.",
+    w_cmds_h: "Commandes utiles",
+    w_cmd1: "/spawn — revenir à la place centrale.",
+    w_cmd2: "/sethome, /home, /delhome — gérer tes points de retour.",
+    w_cmd3: "/tpa <joueur> — demander à te téléporter chez quelqu'un.",
+    w_cmd4: "/msg <joueur> — envoyer un message privé.",
+    w_cmd5: "/balance, /pay — consulter ton argent et payer un joueur.",
+    w_cmd6: "/warp Crates, /arena — accéder aux caisses et aux arènes de boss.",
+    w_start_tip: "💬 Perdu ? Demande sur le Discord, la communauté et le staff sont là pour aider.",
+    w_worlds_p2: "Chaque dimension a sa propre ambiance et ses défis : biomes revisités, structures custom, donjons et coins secrets à découvrir. Que tu sois explorateur, bâtisseur ou chasseur de boss, il y a toujours une nouvelle zone à conquérir. Pense à poser des homes dans tes spots préférés pour y revenir vite.",
+    w_crates_p2: "Chaque caisse possède sa propre table de loot : plus le palier est élevé, plus les récompenses sont rares et puissantes — cosmétiques, équipements, ressources, argent en jeu, et même la table Toolsmith dans la Légendaire. Approche-toi d'une caisse avec la bonne clé en inventaire, fais un clic droit, et tente ta chance. Les clés ne se périment pas : tu peux en accumuler avant de tout ouvrir d'un coup.",
+    w_ts_p3: "L'idée : garder la puissance de ton stuff tout en lui donnant un style unique. Une pioche en netherite peut ressembler à tout autre chose, sans perdre ses enchantements ni sa durabilité. C'est purement cosmétique — parfait pour te démarquer en jeu.",
+    w_ts_steps_h: "Comment l'utiliser",
+    w_ts_step1: "Récupère la table Toolsmith dans une caisse Légendaire, puis pose-la.",
+    w_ts_step2: "Fais un clic droit sur la table pour ouvrir l'interface.",
+    w_ts_step3: "Place ton outil, choisis l'apparence voulue, valide — c'est appliqué !",
+    w_votes_p2: "Voter, c'est gratuit et ça prend 30 secondes : tu entres ton pseudo sur le site, tu valides, et ta clé arrive en jeu. C'est le meilleur moyen de soutenir le serveur — chaque vote le fait grimper dans les classements et attire de nouveaux joueurs. Pense à voter tous les jours sur les 3 sites pour maximiser tes clés.",
+    w_rules_intro: "Tryzaria se veut accueillant pour tout le monde. Ces quelques règles garantissent une bonne ambiance pour tous — les enfreindre peut mener à un avertissement, un mute ou un ban selon la gravité. En jouant sur le serveur, tu acceptes de les respecter.",
+  };
+  var EN = {
+    nav_social: "Socials",
+    wk_start: "🌱 Getting started", wk_boss: "⚔️ Bosses", wk_worlds: "🌸 Worlds",
+    wk_crates: "🎁 Crates", wk_toolsmith: "🔨 Toolsmith", wk_votes: "🗳️ Votes", wk_rules: "📜 Rules & FAQ",
+    wiki_eyebrow: "Server guide", wiki_title: "Tryzaria Wiki",
+    wiki_sub: "Everything to get started and master Survival 2.0 on Tryzaria.",
+    w_start_h: "Getting started", w_start_p: "Welcome to Tryzaria Survival! Here are the basics to begin your adventure.",
+    w_connect_h: "Connect",
+    w_connect1: "Minecraft Java 1.21.4 or any newer version.",
+    w_connect2: "Premium accounts and Cracked both accepted.",
+    w_connect_ip: "Server IP:",
+    w_bedrock_tip: "🎮 Bedrock support (mobile / console) is planned — coming soon!",
+    w_steps_h: "Your first steps",
+    w_step1: "Type /spawn to reach the central hub.",
+    w_step2: "Set your return point with /sethome, come back with /home.",
+    w_step3: "Protect your base with a claim.",
+    w_step4: "Vote daily and open your crates for rewards.",
+    w_boss_h: "Custom bosses",
+    w_boss_p: "Five handcrafted creatures, each with its own mechanics, attacks and legendary loot. They spawn in the arenas — come prepared.",
+    w_b1_e: "Forest", w_b1_n: "Sylvan Colossus", w_b1_d: "A titan of wood and stone, guardian of the forest depths.",
+    w_b2_e: "Ancient", w_b2_n: "Ancestral Guardian", w_b2_d: "A forgotten entity with ancient powers, woken by the reckless.",
+    w_b3_e: "Abyss", w_b3_n: "The Warden", w_b3_d: "Lurking in the dark, it hunts your faintest sound. The most intense fight.",
+    w_b4_e: "Brute", w_b4_n: "Minotaur", w_b4_d: "Brute force charging endlessly through its labyrinth.",
+    w_b5_e: "Fire", w_b5_n: "Ember Drake", w_b5_d: "A flame-spitting dragon holed up deep in the dungeons.",
+    w_boss_tip: "⚔️ Gear up and bring friends — some bosses can't be beaten solo.",
+    w_worlds_h: "Worlds",
+    w_worlds_p: "Overworld, Nether and End fully reworked — plus an Arena world dedicated to bosses.",
+    w_over_n: "A living Overworld", w_over_d: "Reworked biomes, custom flora and fauna, breathtaking landscapes.",
+    w_nether_n: "A tense Nether", w_nether_d: "Hostile purple-tinted caverns, between lava, creatures and treasure.",
+    w_end_n: "A mysterious End", w_end_d: "Floating islands, forgotten cities and secrets for the bravest.",
+    w_arena_n: "The Arena world",
+    w_arena_d: 'Six different arenas where the <a href="#" data-goto="boss" style="color:var(--gold);text-decoration:underline">bosses</a> spawn at random. Reach them with the /arena command.',
+    w_crates_h: "Crates",
+    w_crates_p: "Six crates, from the most common to the rarest and strongest. Get keys by voting, in the shop, or during events.",
+    w_crates_access: "🧭 Access: /warp Crates command, or the Nether portal at spawn.",
+    w_c_common: "Common", w_c_common_t: "Tier 2", w_c_vote: "Vote", w_c_vote_t: "Tier 1",
+    w_c_rare: "Rare", w_c_rare_t: "Tier 3", w_c_epic: "Epic", w_c_epic_t: "Tier 4",
+    w_c_legend: "Legendary", w_c_legend_t: "Tier 5", w_c_boss: "Boss", w_c_boss_t: "Tier 6",
+    w_ts_h: "Toolsmith — customise your tools",
+    w_ts_p: "Tryzaria adds a special table that changes the look (texture) of your tools, without touching their stats.",
+    w_ts_p2: "This table is obtained from the Legendary crate.",
+    w_ts_cap1: "The Toolsmith table in-game.", w_ts_cap2: "How to use it, step by step.",
+    w_votes_h: "Votes",
+    w_votes_p: "Vote for Tryzaria and earn 1 Vote key per vote. Three sites = up to 3 keys a day.",
+    w_vote1: "Top FR server list.", w_vote2: "Dedicated Tryzaria vote page.", w_vote3: "One more vote, more visibility.",
+    w_vote_btn: "🗳️ Vote", w_votes_tip: "🗳️ Vote keys open the Vote crate.",
+    w_rules_h: "Rules & FAQ", w_rules_sub: "Server rules",
+    w_rule1: "Be respectful and keep the chat family friendly.",
+    w_rule2: "No harassment or verbal attacks on another player.",
+    w_rule3: "No spam, advertising, excessive CAPS or repeated messages.",
+    w_rule4: "Hacking or any form of cheating results in a ban.",
+    w_rule5: "Exploiting duplication bugs is forbidden — you MUST tell an admin.",
+    w_rule6: "Lag machines (meant to create lag) are removed and lead to a permanent ban.",
+    w_rule7: "Don't beg for rank or money from other players.",
+    w_rules_end: "😄 Have a great time on Tryzaria!",
+    w_faq: "FAQ",
+    w_faq1_q: "Is the server Cracked-friendly?", w_faq1_a: "Yes — premium Java and Cracked are both accepted, same IP: play.tryzaria.fr.",
+    w_faq2_q: "Which version should I use?", w_faq2_a: "Minecraft Java 1.21.4 or newer.",
+    w_faq3_q: "How do I report a bug or a player?", w_faq3_a: "Through our Discord — open a ticket to the staff.",
+    w_boss_p2: "Forget the wandering zombies: here every boss has its theme, combat phases and signature attacks. Some summon reinforcements, others hit in an area or heal — learn their patterns so you don't end up at the graveyard. The loot matches the challenge: rare gear, precious resources and some of the most sought-after crate keys on the server.",
+    w_boss_list_h: "The bestiary",
+    w_boss_loot_h: "Rewards",
+    w_boss_loot_p: "Beating a boss always drops loot, but the rarest pieces (tool skins, signature gear, big keys) drop based on luck — try again to complete your collection. The tougher the boss, the better the loot. Fight them regularly: they respawn in the arenas after a cooldown.",
+    w_start_p2: "Tryzaria is survival reimagined: handcrafted bosses, fully custom worlds, a living economy, ranks, crates and much more. No need to be a pro — take your time, explore, build your base, join a friendly community and climb the ranks at your own pace. This guide gathers everything you need so you don't miss a thing.",
+    w_cmds_h: "Useful commands",
+    w_cmd1: "/spawn — return to the central hub.",
+    w_cmd2: "/sethome, /home, /delhome — manage your return points.",
+    w_cmd3: "/tpa <player> — request a teleport to someone.",
+    w_cmd4: "/msg <player> — send a private message.",
+    w_cmd5: "/balance, /pay — check your money and pay a player.",
+    w_cmd6: "/warp Crates, /arena — reach the crates and boss arenas.",
+    w_start_tip: "💬 Lost? Ask on Discord — the community and staff are here to help.",
+    w_worlds_p2: "Each dimension has its own mood and challenges: revisited biomes, custom structures, dungeons and secret spots to discover. Whether you're an explorer, builder or boss hunter, there's always a new area to conquer. Set homes at your favourite spots to get back quickly.",
+    w_crates_p2: "Each crate has its own loot table: the higher the tier, the rarer and more powerful the rewards — cosmetics, gear, resources, in-game money, and even the Toolsmith table in the Legendary one. Walk up to a crate with the right key in your inventory, right-click, and try your luck. Keys never expire: stack them up and open them all at once.",
+    w_ts_p3: "The idea: keep your gear's power while giving it a unique style. A netherite pickaxe can look like something completely different, without losing its enchantments or durability. It's purely cosmetic — perfect to stand out in-game.",
+    w_ts_steps_h: "How to use it",
+    w_ts_step1: "Get the Toolsmith table from a Legendary crate, then place it.",
+    w_ts_step2: "Right-click the table to open the interface.",
+    w_ts_step3: "Place your tool, pick the look you want, confirm — done!",
+    w_votes_p2: "Voting is free and takes 30 seconds: enter your username on the site, confirm, and your key arrives in-game. It's the best way to support the server — every vote pushes it up the rankings and brings in new players. Vote every day on all 3 sites to maximise your keys.",
+    w_rules_intro: "Tryzaria aims to be welcoming for everyone. These few rules keep a good vibe for all — breaking them can lead to a warning, a mute or a ban depending on severity. By playing on the server, you agree to follow them.",
+  };
+  Object.assign(TryzariaI18n.T.fr, FR);
+  Object.assign(TryzariaI18n.T.en, EN);
+  var lang = "fr";
+  try { var s = localStorage.getItem("tryz_lang"); if (s === "fr" || s === "en") lang = s; } catch (e) {}
+  TryzariaI18n.apply(lang);
+})();
+</script>
+</body>
+</html>

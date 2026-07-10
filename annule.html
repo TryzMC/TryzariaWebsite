@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Paiement annulé — Tryzaria Survival</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="assets/img/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/style.css" />
+<style>
+  .return-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+  .return-card{max-width:520px;width:100%;text-align:center;background:var(--glass);
+    border:1px solid var(--glass-brd);border-radius:var(--radius-lg);padding:42px 30px;
+    backdrop-filter:blur(10px);box-shadow:var(--shadow)}
+  .return-mark{width:92px;height:92px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;
+    font-size:2.4rem;animation:pop .5s var(--ease) both;
+    background:radial-gradient(circle at 50% 35%,rgba(255,154,77,.30),rgba(0,0,0,.15));
+    border:2px solid var(--sunset)}
+  @keyframes pop{0%{transform:scale(.4);opacity:0}60%{transform:scale(1.08)}100%{transform:scale(1);opacity:1}}
+  .return-card h1{font-family:"Fredoka";font-size:1.9rem;color:var(--cream);margin-bottom:10px}
+  .return-card p{color:var(--muted);max-width:42ch;margin:0 auto 8px}
+  .return-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+  @media (max-width:520px){.return-card{padding:32px 20px}.return-btns .btn{width:100%}}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true"></div>
+<div class="petals" aria-hidden="true"></div>
+
+<div class="return-wrap">
+  <div class="return-card">
+    <div class="return-mark">🛒</div>
+    <h1 id="a-title">Paiement annulé</h1>
+    <p id="a-msg"></p>
+    <div class="return-btns">
+      <a class="btn btn-gold" href="boutique.html" id="a-shop">Retour à la boutique</a>
+      <a class="btn btn-ghost" href="index.html" id="a-home">Accueil</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var TX = {
+    fr: {
+      title: "Paiement annulé",
+      msg: "Aucun montant n'a été débité. Tu peux réessayer quand tu veux depuis la boutique.",
+      shop: "Retour à la boutique", home: "Accueil",
+    },
+    en: {
+      title: "Payment cancelled",
+      msg: "No amount was charged. You can try again anytime from the shop.",
+      shop: "Back to shop", home: "Home",
+    },
+  };
+  function lang() { try { return localStorage.getItem("tryz_lang") === "en" ? "en" : "fr"; } catch (e) { return "fr"; } }
+  var x = TX[lang()];
+  document.documentElement.lang = lang();
+  document.getElementById("a-title").textContent = x.title;
+  document.getElementById("a-msg").textContent = x.msg;
+  document.getElementById("a-shop").textContent = x.shop;
+  document.getElementById("a-home").textContent = x.home;
+})();
+</script>
+</body>
+</html>
