@@ -21,6 +21,7 @@
     fr: {
       eyebrow: "Boutique en jeu", h1: "Soutiens Tryzaria",
       lead: "Débloque ton grade, tes clés et tes avantages exclusifs — livrés automatiquement en jeu, en quelques secondes.",
+      tiers_note: "Chaque grade inclut automatiquement tous les avantages des grades précédents — du plus simple au plus complet.",
       pseudo_label: "Ton pseudo Minecraft (celui en jeu)", pseudo_ph: "Pseudo exact",
       coupon_label: "Code promo (optionnel)", coupon_ph: "Ex : LAUNCH10", coupon_apply: "Appliquer",
       coupon_ok: "Code appliqué ✓", coupon_bad: "Code invalide ou expiré",
@@ -39,6 +40,7 @@
     en: {
       eyebrow: "In-game shop", h1: "Support Tryzaria",
       lead: "Unlock your rank, keys and exclusive perks — delivered automatically in-game, in seconds.",
+      tiers_note: "Every rank automatically includes all perks from the ranks below it — from starter to full loadout.",
       pseudo_label: "Your Minecraft username (in-game)", pseudo_ph: "Exact username",
       coupon_label: "Promo code (optional)", coupon_ph: "e.g. LAUNCH10", coupon_apply: "Apply",
       coupon_ok: "Code applied ✓", coupon_bad: "Invalid or expired code",
@@ -108,6 +110,7 @@
     $("shop-eyebrow").textContent = t("eyebrow");
     $("shop-h1").textContent = t("h1");
     $("shop-lead").textContent = t("lead");
+    $("shop-tiers-note").textContent = t("tiers_note");
     $("shop-pseudo-label").textContent = t("pseudo_label");
     $("shop-pseudo").placeholder = t("pseudo_ph");
     $("shop-coupon-label").textContent = t("coupon_label");
@@ -174,11 +177,16 @@
   function descOf(p) { return escapeHtml(lang() === "en" ? p.description_en : p.description_fr); }
   function badgeOf(p) { return lang() === "en" ? p.badge_en : p.badge_fr; }
   function accentOf(p) { return ACCENT[p.id] || "#f6c94a"; }
-  function featuresHtml(p, cls) {
-    if (!Array.isArray(p.features) || !p.features.length) return "";
+  function featuresHtml(list, cls) {
+    if (!Array.isArray(list) || !list.length) return "";
     var h = '<ul class="' + cls + '">';
-    for (var i = 0; i < p.features.length; i++) h += "<li>" + escapeHtml(p.features[i]) + "</li>";
+    for (var i = 0; i < list.length; i++) h += "<li>" + escapeHtml(list[i]) + "</li>";
     return h + "</ul>";
+  }
+  // La modale affiche la liste complète (features_full) quand elle existe ;
+  // sinon retombe sur la liste courte (features) affichée sur la carte.
+  function fullFeaturesOf(p) {
+    return Array.isArray(p.features_full) && p.features_full.length ? p.features_full : p.features;
   }
 
   function cardHtml(p) {
@@ -192,14 +200,14 @@
         '<div class="scard--featured__body">' +
         '<div class="scard__name">' + nameOf(p) + "</div>" +
         '<div class="scard__price">' + buildPrice(p) + "</div>" +
-        '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p, "scard__features") +
+        '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") +
         "</div>" + cta + "</article>";
     }
     return '<article class="scard" style="--accent:' + accentOf(p) + '"' + open + ">" +
       badgeHtml + buildIcon(p) +
       '<div class="scard__name">' + nameOf(p) + "</div>" +
       '<div class="scard__price">' + buildPrice(p) + "</div>" +
-      '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p, "scard__features") + cta +
+      '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") + cta +
       "</article>";
   }
 
@@ -227,7 +235,7 @@
       '<h2 class="modal__name" id="modal-name">' + nameOf(p) + "</h2>" +
       '<div class="modal__price">' + buildPrice(p) + "</div>" +
       '<p class="modal__desc">' + descOf(p) + "</p>" +
-      featuresHtml(p, "modal__features") +
+      featuresHtml(fullFeaturesOf(p), "modal__features") +
       '<div class="modal__pseudo shop-field">' +
         '<label for="modal-pseudo">' + t("pseudo_label") + "</label>" +
         '<input id="modal-pseudo" type="text" maxlength="24" autocomplete="off" spellcheck="false" placeholder="' + t("pseudo_ph") + '" />' +
@@ -262,7 +270,7 @@
   }
 
   function loadProducts() {
-    var cols = "id,name_fr,name_en,price_cents,description_fr,description_en,features,icon,icons,featured,badge_fr,badge_en,sort_order";
+    var cols = "id,name_fr,name_en,price_cents,description_fr,description_en,features,features_full,icon,icons,featured,badge_fr,badge_en,sort_order";
     var url = cfg.SUPABASE_URL + "/rest/v1/products?select=" + cols + "&active=eq.true&order=sort_order.asc";
     return fetch(url, { headers: { apikey: cfg.SUPABASE_ANON_KEY, Authorization: "Bearer " + cfg.SUPABASE_ANON_KEY } })
       .then(function (r) { if (!r.ok) throw new Error("products " + r.status); return r.json(); });
