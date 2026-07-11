@@ -26,6 +26,7 @@
       coupon_label: "Code promo (optionnel)", coupon_ph: "Ex : LAUNCH10", coupon_apply: "Appliquer",
       coupon_ok: "Code appliqué ✓", coupon_bad: "Code invalide ou expiré",
       buy_card: "💳 Carte", buy_paypal: "PayPal", view_offer: "Voir l'offre",
+      see_more: "Clique pour voir tous les avantages →",
       loading: "Chargement de la boutique…", empty: "Aucun article disponible pour l'instant.",
       load_err: "Impossible de charger la boutique. Réessaie plus tard.",
       err_pseudo: "Entre d'abord ton pseudo Minecraft (lettres, chiffres, _ ou .).",
@@ -45,6 +46,7 @@
       coupon_label: "Promo code (optional)", coupon_ph: "e.g. LAUNCH10", coupon_apply: "Apply",
       coupon_ok: "Code applied ✓", coupon_bad: "Invalid or expired code",
       buy_card: "💳 Card", buy_paypal: "PayPal", view_offer: "View offer",
+      see_more: "Click to see all perks →",
       loading: "Loading shop…", empty: "No item available right now.",
       load_err: "Couldn't load the shop. Try again later.",
       err_pseudo: "Enter your Minecraft username first (letters, digits, _ or .).",
@@ -194,20 +196,23 @@
     var badgeHtml = badge ? '<span class="scard__badge">' + escapeHtml(badge) + "</span>" : "";
     var cta = '<div class="scard__buy"><button class="sbtn sbtn--card scard__cta" data-open="' + escapeHtml(p.id) + '">' + t("view_offer") + "</button></div>";
     var open = ' data-open="' + escapeHtml(p.id) + '"';
+    // Le lien "voir tout" n'apparaît que si features_full contient vraiment plus que le résumé de la carte.
+    var hasMore = Array.isArray(p.features_full) && p.features_full.length > (Array.isArray(p.features) ? p.features.length : 0);
+    var seeMore = hasMore ? '<p class="scard__more"' + open + ">" + escapeHtml(t("see_more")) + "</p>" : "";
     if (p.featured) {
       return '<article class="scard scard--featured" style="--accent:' + accentOf(p) + '"' + open + ">" +
         badgeHtml + buildIcon(p) +
         '<div class="scard--featured__body">' +
         '<div class="scard__name">' + nameOf(p) + "</div>" +
         '<div class="scard__price">' + buildPrice(p) + "</div>" +
-        '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") +
+        '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") + seeMore +
         "</div>" + cta + "</article>";
     }
     return '<article class="scard" style="--accent:' + accentOf(p) + '"' + open + ">" +
       badgeHtml + buildIcon(p) +
       '<div class="scard__name">' + nameOf(p) + "</div>" +
       '<div class="scard__price">' + buildPrice(p) + "</div>" +
-      '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") + cta +
+      '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") + seeMore + cta +
       "</article>";
   }
 
