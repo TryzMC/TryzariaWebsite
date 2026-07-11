@@ -194,25 +194,27 @@
   function cardHtml(p) {
     var badge = badgeOf(p);
     var badgeHtml = badge ? '<span class="scard__badge">' + escapeHtml(badge) + "</span>" : "";
-    var cta = '<div class="scard__buy"><button class="sbtn sbtn--card scard__cta" data-open="' + escapeHtml(p.id) + '">' + t("view_offer") + "</button></div>";
     var open = ' data-open="' + escapeHtml(p.id) + '"';
     // Le lien "voir tout" n'apparaît que si features_full contient vraiment plus que le résumé de la carte.
+    // Placé DANS .scard__buy (avec le bouton) pour qu'un seul margin-top:auto pousse les deux ensemble
+    // en bas de la carte, quelle que soit la longueur de la description au-dessus.
     var hasMore = Array.isArray(p.features_full) && p.features_full.length > (Array.isArray(p.features) ? p.features.length : 0);
     var seeMore = hasMore ? '<p class="scard__more"' + open + ">" + escapeHtml(t("see_more")) + "</p>" : "";
+    var cta = '<div class="scard__buy">' + seeMore + '<button class="sbtn sbtn--card scard__cta" data-open="' + escapeHtml(p.id) + '">' + t("view_offer") + "</button></div>";
     if (p.featured) {
       return '<article class="scard scard--featured" style="--accent:' + accentOf(p) + '"' + open + ">" +
         badgeHtml + buildIcon(p) +
         '<div class="scard--featured__body">' +
         '<div class="scard__name">' + nameOf(p) + "</div>" +
         '<div class="scard__price">' + buildPrice(p) + "</div>" +
-        '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") + seeMore +
+        '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") +
         "</div>" + cta + "</article>";
     }
     return '<article class="scard" style="--accent:' + accentOf(p) + '"' + open + ">" +
       badgeHtml + buildIcon(p) +
       '<div class="scard__name">' + nameOf(p) + "</div>" +
       '<div class="scard__price">' + buildPrice(p) + "</div>" +
-      '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") + seeMore + cta +
+      '<p class="scard__desc">' + descOf(p) + "</p>" + featuresHtml(p.features, "scard__features") + cta +
       "</article>";
   }
 

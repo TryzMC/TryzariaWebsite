@@ -94,11 +94,11 @@
   .scard__features{width:100%;margin:6px 0 4px;text-align:left}
   .scard__features li{padding:5px 0;color:var(--cream);font-size:.9rem;display:flex;gap:8px;align-items:flex-start}
   .scard__features li::before{content:"◆";color:var(--accent);font-size:.65rem;margin-top:5px}
-  .scard__more{cursor:pointer;color:var(--accent);font-size:.82rem;font-weight:700;margin:auto 0 0;padding-top:6px;
+  .scard__more{cursor:pointer;color:var(--accent);font-size:.82rem;font-weight:700;margin:0;
     transition:transform .15s var(--ease),opacity .15s;opacity:.85}
   .scard__more:hover{transform:translateX(3px);opacity:1;text-decoration:underline}
-  .scard--featured .scard__more{margin-top:10px}
-  .scard__buy{display:flex;gap:9px;margin-top:auto;padding-top:16px;width:100%}
+  .scard__buy{display:flex;flex-direction:column;gap:9px;margin-top:auto;padding-top:16px;width:100%}
+  .scard__buy .scard__cta{width:100%}
   .sbtn{flex:1;cursor:pointer;border:none;border-radius:12px;padding:11px 12px;font-family:"Nunito";
     font-weight:800;font-size:.92rem;transition:transform .12s,box-shadow .15s,background .15s}
   .sbtn:hover{transform:translateY(-2px)}
